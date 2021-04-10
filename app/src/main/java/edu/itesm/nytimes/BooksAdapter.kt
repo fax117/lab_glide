@@ -1,5 +1,6 @@
 package edu.itesm.nytimes
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class BooksAdapter(private val data: List<Book>?) : RecyclerView.Adapter<BooksAdapter.ViewHolder>()  {
+class BooksAdapter(private val data: List<Book>?)
+    : RecyclerView.Adapter<BooksAdapter.ViewHolder>()  {
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
 
@@ -22,13 +24,14 @@ class BooksAdapter(private val data: List<Book>?) : RecyclerView.Adapter<BooksAd
 
             Glide.with(view.context)
                 .load(property.book_image)
-                .circleCrop()
+                .fitCenter()
                 .into(imageView)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_ny_book, parent, false)
+        Log.i("Books", itemCount.toString())
         return ViewHolder(v)
     }
 
